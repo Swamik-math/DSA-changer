@@ -3,9 +3,10 @@ using namespace std;
 
 int main()
 {
-    cout << "Kello , world";
+    int a = 10;
+    a++;
+    int b = a;
+
+    cout << b << endl;
     return 0;
 }
-
-// this is the daily coding challenge 
-// so u have to do it every day
