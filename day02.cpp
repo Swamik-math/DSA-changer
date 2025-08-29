@@ -22,3 +22,11 @@ int main()
 
     return 0;
 }
+
+// ASCII  = it is a number given to the characters
+// [A-Z] = (65 - 90)       [a - z] = (97 - )
+//  we can also use ascii value to find wheather the code is upper or lower case
+
+// Ternary statements
+//        condition ? stt 1 : stt 2;
+
