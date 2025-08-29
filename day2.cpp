@@ -16,22 +16,40 @@
 
 // }
 
+// #include<iostream>
+// using namespace std;
+
+// int main()
+// {
+//     int age;
+
+//     cout << "Enter your age: ";
+//     cin >> age;
+
+//     if(age > 18){
+//         cout << "You can vote.";
+//     }
+//     else{
+//         cout << "You cannot vote , you are below 18.";
+//     }
+
+//     return 0;
+// }
+
 #include<iostream>
 using namespace std;
 
 int main()
 {
-    int age;
+    int n;
+    cout << "Enter number : ";
+    cin >> n;
 
-    cout << "Enter your age: ";
-    cin >> age;
-
-    if(age > 18){
-        cout << "You can vote.";
+    if(n%2 == 0){
+        cout << "The number is even.";
     }
     else{
-        cout << "You cannot vote , you are below 18.";
+        cout << "The number is odd.";
     }
-
     return 0;
 }
