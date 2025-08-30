@@ -47,15 +47,43 @@ using namespace std;
 
 // nested loops
 
+// int main(){
+
+//     for(int i=1; i <= 5; i++){
+//         int m = 10 ;
+//         for(int i=1; i<= m; i++){
+//             cout << "*";
+//         }
+//      cout << endl;   
+//     }
+//     return 0;
+
+// }
+
+
+// int main(){
+//     int n , sum =0;
+//     cout << "Enter n value: ";
+//     cin >> n;
+
+//     for(int i=0; i<=n; i++){
+//         if( i%3 == 0){
+//             sum += i;
+//         }
+//     }
+//     cout << sum;
+//     return 0;
+// }
+
+
+// n number factorial value: ____;
+
 int main(){
-
-    for(int i=1; i <= 5; i++){
-        int m = 10 ;
-        for(int i=1; i<= m; i++){
-            cout << "*";
-        }
-     cout << endl;   
+    int n = 5;
+    int ans = 1;
+    for(int i=1; i<=n; i++){
+        ans = ans*i;
     }
-    return 0;
-
+    cout << ans;
+    return 0 ;
 }
