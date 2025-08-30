@@ -1,3 +1,5 @@
+// loops
+
 // do - while loop
 
 #include<iostream>
@@ -21,24 +23,39 @@ using namespace std;
 
 // to find the given number is prime or not
 
+// int main(){
+//     int n ;
+//     cout << "Enter the number : ";
+//     cin >> n;
+
+//     bool isPrime = true;
+//     for(int i=2; i*i <= n-1; i++){
+//         if( n%i == 0){
+//             isPrime = false;
+//             break;
+//         }
+//     }
+
+// if(isPrime == true){
+//     cout << "The number is a prime number.";
+// }
+// else{
+//     cout << "The number is not a pirme number.";
+// }
+//     return 0;
+// }
+
+// nested loops
+
 int main(){
-    int n ;
-    cout << "Enter the number : ";
-    cin >> n;
 
-    bool isPrime = true;
-    for(int i=2; i <= n-1; i++){
-        if( n%i == 0){
-            isPrime = false;
-            break;
+    for(int i=1; i <= 5; i++){
+        int m = 10 ;
+        for(int i=1; i<= m; i++){
+            cout << "*";
         }
+     cout << endl;   
     }
-
-if(isPrime == true){
-    cout << "The number is a prime number.";
-}
-else{
-    cout << "The number is not a pirme number.";
-}
     return 0;
+
 }
