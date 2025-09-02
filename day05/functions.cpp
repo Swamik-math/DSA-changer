@@ -94,17 +94,43 @@ int sumN(int n){
 // pass by value : copy of arguments is passed to function 
 // pass by reference : (in pointers)
 
-int changeX(int x){
-    x = 2*x;
-    cout << "x = " << x << endl;
+
+
+// int changeX(int x){
+//     x = 2*x;
+//     cout << "x = " << x << endl;
+// }
+
+// int main(){
+//     int  x= 5;
+
+//     changeX(x);
+
+//     cout << "x = " << x << endl;
+
+//     return 0;
+// }
+
+// To calculate the sum of digits of the number
+int sumDigit(int num){
+
+    int digSum =0;
+
+    while(num > 0){
+        int lastDig = num%10;
+        num = num/10;
+
+        digSum += lastDig;
+    }
+    return digSum;
 }
 
 int main(){
-    int  x= 5;
+    int n;
+    cout << "Enter the value of n : ";
+    cin >> n;
 
-    changeX(x);
-
-    cout << "x = " << x << endl;
+    cout << "The sum of the digits in the number is : " << sumDigit(n) << endl;
 
     return 0;
 }
