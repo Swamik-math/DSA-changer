@@ -63,26 +63,48 @@ int sumN(int n){
 
 // factorial
 
-int fact(int n){
-    int fact = 1;
-    for(int i=1; i<=n; i++){
-        fact = fact * i;
-    }
-    return fact;
+// int fact(int n){
+//     int fact = 1;
+//     for(int i=1; i<=n; i++){
+//         fact = fact * i;
+//     }
+//     return fact;
+// }
+
+// int main(){
+
+//     // cout << sum(10, 5) << endl; // arguments
+
+//     // cout << minValue(10, 5) << endl;
+
+//     cout << sumN(11) << endl;
+//     cout << sumN(6)<< endl;
+//     cout << fact(3) << endl;
+//     cout << fact(10) << endl;
+
+//     return 0;
+// }
+
+// to reduce the redundancy
+// heap -- dynamic allocation
+// stack -- it uses satatic memory
+
+// the created functions int the code is stored in the form of the STACK
+
+// pass by value : copy of arguments is passed to function 
+// pass by reference : (in pointers)
+
+int changeX(int x){
+    x = 2*x;
+    cout << "x = " << x << endl;
 }
 
 int main(){
+    int  x= 5;
 
-    // cout << sum(10, 5) << endl; // arguments
+    changeX(x);
 
-    // cout << minValue(10, 5) << endl;
-
-    cout << sumN(11) << endl;
-    cout << sumN(6)<< endl;
-    cout << fact(3) << endl;
-    cout << fact(10) << endl;
+    cout << "x = " << x << endl;
 
     return 0;
 }
-
-// to reduce the redundancy
