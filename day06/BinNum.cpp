@@ -1,6 +1,9 @@
 #include<iostream>
 using namespace std;
 
+
+// convert decimal to binary
+
 int decToBinary(int decNum){
     int ans = 0, pow = 1;
 
@@ -10,6 +13,21 @@ int decToBinary(int decNum){
 
         ans += (rem * pow);
         pow *= 10;
+    }
+    return ans;
+}
+
+// convert binary to decimal
+
+int binToDec(int binNum){
+    int ans = 0, pow = 1;
+
+    while(binNum > 0){
+        int rem = binNum % 10;
+        ans += binNum * pow;
+
+        binNum /= 10;
+        pow *= 2;
     }
     return ans;
 }
@@ -24,6 +42,10 @@ int main(){
     for(int i=0; i<= 20; i++){
         cout << decToBinary(i) << endl;
     }
+
+    int binNum = 101;
+
+    cout << binToDec(binNum) << endl;
 
     return 0;
     
