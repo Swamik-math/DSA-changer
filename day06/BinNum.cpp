@@ -50,3 +50,7 @@ int main(){
     return 0;
     
 }
+
+
+// for every odd decimal number in the in the binary form it should have 1 in the begining of the number
+
