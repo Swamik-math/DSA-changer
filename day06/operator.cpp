@@ -9,5 +9,9 @@ int main(){
     cout << sizeof(signed int) << endl; // it differ the number +ve and -ve
     cout << sizeof(long long int) << endl;
 
+
+    unsigned int x = -10;
+    cout << x << endl;
+
     return 0;
 }
