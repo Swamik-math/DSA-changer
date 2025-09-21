@@ -30,6 +30,7 @@ int main(){
 - in array we can only store same type of datatypes
 - are contiguous in memory
 - are linear
+- non primitive datatype
 
 1. int marks[100];
 2. int marks[5] = {1,2,3,4,5}; 
