@@ -16,13 +16,17 @@ int main(){
         // }
 
         smallest = min(nums[i], smallest);
+    
 
         // if(nums[i] > largest){
         //     largest = nums[i];
         // }
         largest = max(nums[i], largest);
+        
+
     }
     cout << "Smallest number = " << smallest << endl;
+    
     cout << largest << endl;
 
     return 0;
