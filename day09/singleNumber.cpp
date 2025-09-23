@@ -1,18 +1,18 @@
 #include<iostream>
 using namespace std;
 
-class Solution {
-public:
-    int singleNumber(vector<int>& nums) {
+// class Solution {
+// public:
+//     int singleNumber(vector<int>& nums) {
 
-        int ans = 0;
+//         int ans = 0;
 
-        for(int val : nums){
-            ans ^= val;
-        }
-    return ans;
-    }
-};
+//         for(int val : nums){
+//             ans ^= val;
+//         }
+//     return ans;
+//     }
+// };
 
 int main(){
 
