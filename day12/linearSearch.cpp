@@ -18,3 +18,8 @@ int main(){
     }
     return 0;
 }
+
+/*
+time complexity for linear search is O(n)
+
+*/
