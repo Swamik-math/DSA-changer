@@ -22,4 +22,21 @@ int main(){
 /*
 time complexity for linear search is O(n)
 
+Big O notation gives the worst case senario
+and it is also called as upper bound
+
+average case time complexity - θ (theta) 
+
+best case time complexity - Ω(omegha) , also called as lower bound.
+
+BOOK = "cormen"
+*/
+
+/*
+SPACE COMPLEXITY
+
+-> amount of space taken by an algorithm as a function of input size(n).
+
+
+
 */
