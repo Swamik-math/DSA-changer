@@ -19,3 +19,6 @@ int main(){
     }
     return 0;
 }
+
+// by use of the brute force algorithm 
+// time complexity is O(n^2)
