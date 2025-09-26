@@ -37,6 +37,6 @@ SPACE COMPLEXITY
 
 -> amount of space taken by an algorithm as a function of input size(n).
 
-
+O(1) < O(log n) < O(n) < O(n log n) << O(x^2) << O(x^3) << O(x^3) << O(2^x) << O(n!)
 
 */
