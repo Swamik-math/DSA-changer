@@ -33,4 +33,6 @@ int main(){
    f(n-1) = k + f(n-2) 
 
    for fibonacci series time complexity is  =  O(2^n)
+
+   merg sort time complexity = O(n)
 */
