@@ -18,3 +18,17 @@ Big O Notation is the mathematical notation used to describe the upper bound (th
 of an algorithm's running time. It focuses only on the dominant term and ignores constants, 
 as we're interested in the rate of growth.
 */
+
+/*
+
+The Trade-off
+The choice between an Array and a Linked List depends 
+entirely on which operations your application performs most frequently:
+
+Choose an Array if you need fast, random access 
+to elements (e.g., frequently reading the 1st, 5th, or 100th element).
+
+Choose a Linked List if you need frequent additions or removals 
+of elements in the middle of the collection (e.g., implementing a queue or a stack).
+
+*/
