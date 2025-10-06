@@ -44,3 +44,22 @@ New Rocket Fuel Compound: A boron-rich compound, manganese diboride, has been de
 Search for Life on Enceladus: Fresh data analysis from NASA's Cassini spacecraft uncovered more complex organic molecules from the geyser jets of Saturn's moon Enceladus, suggesting it may be able to support life. (Oct 3)
 */
 
+/*
+⚽ Major Sports Updates
+Cricket - ICC Women's World Cup 2025: The tournament is underway with ongoing matches. India Women defeated Pakistan Women by 88 runs on October 5.
+
+Cricket - India vs West Indies Test Series: India secured a decisive victory against West Indies, winning the first Test by an innings and 140 runs on October 2.
+
+Tennis: Novak Djokovic advanced to the finals of the Shanghai Masters on October 6.
+
+Football (Soccer): Manchester United secured a 2-1 victory over Chelsea in a Premier League clash. (Oct 6)
+
+⚕️ Health & Medical News
+Alcohol and Brain Health: A new large-scale study suggested that there is no safe level of alcohol consumption for the brain, finding that the risk of dementia rises in direct proportion to intake, overturning previous beliefs about light drinking. (Oct 4)
+
+Hunger Regulation Protein: Researchers discovered that the protein MRAP2 is a key regulator of hunger, acting to strengthen the "stop eating" signals, which offers a new target for weight loss research. (Oct 5)
+
+Hair Loss Drug Warning: A new report raised concerns over a link between the common hair loss drug finasteride and an increased risk of depression and suicide in men. (Oct 5)
+
+Indian CGHS Reforms: The Indian government announced its biggest reform in the Central Government Health Scheme (CGHS) in 15 years, revising package rates for nearly 2,000 medical procedures and expanding coverage to dependent transgender children and siblings. (Oct 6)
+*/
