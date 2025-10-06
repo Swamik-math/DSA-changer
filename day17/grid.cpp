@@ -43,3 +43,4 @@ New Rocket Fuel Compound: A boron-rich compound, manganese diboride, has been de
 
 Search for Life on Enceladus: Fresh data analysis from NASA's Cassini spacecraft uncovered more complex organic molecules from the geyser jets of Saturn's moon Enceladus, suggesting it may be able to support life. (Oct 3)
 */
+
