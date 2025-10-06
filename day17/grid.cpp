@@ -32,3 +32,14 @@ Indian Festive Sales: Navratri 2025 sales hit a decade high, with major automake
 
 Cryptocurrency: Bitcoin marked its eighth consecutive session of gains, supported by positive momentum in US equities and inflows into Bitcoin ETFs.
 */
+
+/*
+🔬 Technology & Science Breakthroughs
+"Dark Matter" of Electronics Found: Scientists have for the first time directly tracked elusive "dark excitons" inside atomically thin materials. These quantum particles are more stable and could revolutionize information technology. (Oct 4)
+
+AI for Fusion Research: A powerful new AI tool called Diag2Diag is being used to revolutionize fusion research by filling in missing plasma data that sensors cannot see. (Oct 1)
+
+New Rocket Fuel Compound: A boron-rich compound, manganese diboride, has been developed, packing 150% more energy density than current solid-rocket materials. (Sep 30)
+
+Search for Life on Enceladus: Fresh data analysis from NASA's Cassini spacecraft uncovered more complex organic molecules from the geyser jets of Saturn's moon Enceladus, suggesting it may be able to support life. (Oct 3)
+*/
