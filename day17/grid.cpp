@@ -35,17 +35,4 @@ Cryptocurrency: Bitcoin marked its eighth consecutive session of gains, supporte
 
 /*
 🔬 Technology & Science Breakthroughs
-"Dark Matter" of Electronics Found: Scientists have for the first time directly tracked elusive "dark excitons" inside atomically thin materials. These quantum particles are more stable and could revolutionize information technology. (Oct 4)
-
-AI for Fusion Research: A powerful new AI tool called Diag2Diag is being used to revolutionize fusion research by filling in missing plasma data that sensors cannot see. (Oct 1)
-
-New Rocket Fuel Compound: A boron-rich compound, manganese diboride, has been developed, packing 150% more energy density than current solid-rocket materials. (Sep 30)
-
-Search for Life on Enceladus: Fresh data analysis from NASA's Cassini spacecraft uncovered more complex organic molecules from the geyser jets of Saturn's moon Enceladus, suggesting it may be able to support life. (Oct 3)
-*/
-
-/*
-⚽ Major Sports Updates
-Cricket - ICC Women's World Cup 2025: The tournament is underway with ongoing matches. India Women defeated Pakistan Women by 88 runs on October 5.
-
-Cricket - India vs West Indies Test Series: India secured a decisive victory against West Indies, winning the first Test by an innings and 140 runs on October 2.
+"D
