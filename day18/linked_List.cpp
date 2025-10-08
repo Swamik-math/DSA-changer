@@ -28,3 +28,58 @@ Remove duplicates
 Delete nth node from end
 
 */
+
+#include<iostream>
+using namespace std;
+
+class Node{
+    public:
+    int data;
+    Node* next;
+
+    Node(int val){
+        data = val;
+        next = nullptr;
+    }
+};
+
+class Linked_list{
+    public:
+    Node* head;
+
+    Linked_list(){
+        head = nullptr;
+    }
+
+    void insertAtEnd(int val){
+        Node* newNode = new Node(val);
+
+        if(head == nullptr){
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        while(temp->next != nullptr){
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+
+    void display(){
+        Node* temp = head;
+        while(temp != nullptr){
+            cout << temp->data << "->";
+            temp = temp->next;
+        }
+        cout << "NULL" << endl;
+    }
+};
+
+int main(){
+    Linked_list list;
+    list.insertAtEnd(10);
+    list.insertAtEnd(20);
+    list.insertAtEnd(30);
+    list.display();
+    return 0;
+}
