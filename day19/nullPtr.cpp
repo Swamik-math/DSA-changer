@@ -41,12 +41,13 @@ references = alias(meaning)
 
 
 // ARRAY POINTER
+// array pointers are constant value, those values cannot be changed throughtout the program
 
 int main(){
     int arr[] = {1,2,3,4,5};
 
     cout << arr << endl;
     cout << *arr << endl;
-    
+
     return 0;
 }
