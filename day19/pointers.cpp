@@ -10,6 +10,8 @@ int main(){
     float m  = 10.354;
     float* ptr2 = &m;
     cout << &m << "    " << &ptr2 << endl;
+    cout << *(&m) << endl;
+
 
     // pointer to pointer
 
@@ -22,3 +24,4 @@ int main(){
 }
 
 // pointers - are the special variable that store the address of the variable
+// * -> dereference operator (value at address)
