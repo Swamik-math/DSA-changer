@@ -13,11 +13,11 @@ references = alias(meaning)
 //     *ptr = 20;
 // }
 
-void changeB(int &b){
-    b = 20;
-}
+// void changeB(int &b){
+//     b = 20;
+// }
 
-int main(){
+// int main(){
 
     // int** ptr = NULL;
     // cout << ptr << endl;
@@ -32,9 +32,21 @@ int main(){
     // cout << *q << endl;
 
     // pass by reference
-    int a = 10;
-    changeB(a);
-    cout << "inside main fnx : " << a << endl;
+//     int a = 10;
+//     changeB(a);
+//     cout << "inside main fnx : " << a << endl;
 
+//     return 0;
+// }
+
+
+// ARRAY POINTER
+
+int main(){
+    int arr[] = {1,2,3,4,5};
+
+    cout << arr << endl;
+    cout << *arr << endl;
+    
     return 0;
 }
