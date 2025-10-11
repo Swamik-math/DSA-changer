@@ -11,6 +11,7 @@ int main(){
     float* ptr2 = &m;
     cout << &m << "    " << &ptr2 << endl;
     cout << *(&m) << endl;
+    cout << *(ptr2) << endl;
 
 
     // pointer to pointer
@@ -19,6 +20,9 @@ int main(){
     int* ptr = &b;
     int** parptr = &ptr;
     cout << &ptr << "  " << &parptr << endl;
+    cout << **(parptr) << endl;
+    cout << *(parptr) << endl;
+    cout << ptr << endl;
 
     return 0;
 }
