@@ -41,7 +41,6 @@ references = alias(meaning)
 
 
 
-
 // ARRAY POINTER
 // array pointers are constant value, those values cannot be changed throughtout the program
 
