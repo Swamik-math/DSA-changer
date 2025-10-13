@@ -34,7 +34,7 @@ public:
 
 int main(){
 
-    vector<int> arr = {4,5,6,7,0,1,2};
+    vector<int> arr = {7,8,9,10,11,12,13,14,0,1,2,35};
     int target = 0;
 
     Solution sol;
