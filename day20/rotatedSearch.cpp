@@ -40,6 +40,11 @@ int main(){
     Solution sol;
     int idx = sol.search(arr, target);
 
-    if
+    if(idx != -1)
+        cout << "Element found at index: " << idx << endl;
+    else
+        cout << "Element not found." << endl;
+
+        return 0;
 
 }
