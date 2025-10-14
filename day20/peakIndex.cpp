@@ -15,11 +15,38 @@ using namespace std;
 // }
 
 
+
+    int peakIndexInMountainArray(vector<int>& A) {
+        
+        int n = A.size();
+        int st = 0, ed = n-1;
+
+        while(st <= ed){
+            int mid = st+(ed-st)/2;
+
+            if(A[mid-1] < A[mid] > A[mid+1]){
+                return mid;
+            }
+            
+            if(A[mid-1] < A[mid]){
+                st = mid+1;
+            }
+            else{
+                ed = mid-1;
+            }
+        }
+        return st;
+    }
+
+
 int main(){
-    vector<int> arr = {1,2,3,4,6,9,3,2,1};
+    vector<int> A = {1,2,3,4,6,9,3,2,1};
 
     // cout << "Peak index is: " << peakMountain(arr) << endl;
+    cout << "Peak index is: " << peakIndexInMountainArray(A) << endl;
 
 
     return 0;
 }
+
+
