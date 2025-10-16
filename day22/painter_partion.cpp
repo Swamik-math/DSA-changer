@@ -1,0 +1,5 @@
+/* PAINTERS PARTION PROBLEM
+
+
+
+*/
