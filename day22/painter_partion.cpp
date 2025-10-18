@@ -14,3 +14,4 @@ int minTimeToPaint(vector<int> &arr, int n, int m){
     }
 
 }
+
