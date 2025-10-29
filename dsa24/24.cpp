@@ -9,6 +9,7 @@ LARGEST MINIMUM DISTANCE
 
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 bool isPossible(vector<int> &arr, int N, int C, int minAllowedDist){
@@ -38,7 +39,7 @@ int getDistance(vector<int> &arr, int N, int C){
     while(st <= end) {
         int mid = st + (end -st) /2;
 
-        if(isPossible(arr), N, C, mid){
+        if(isPossible(arr, N, C, mid)){
             ans = mid;
             st = mid+1;
         }else{
