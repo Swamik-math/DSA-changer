@@ -9,7 +9,6 @@ public:
 
         int total = weeks * 28 + 7 * (weeks * (weeks - 1)) / 2;
         total += days * weeks + (days * (days + 1)) / 2;
-
         return total;
     }
 };
