@@ -12,6 +12,7 @@ int factorial(int n){
     return fact;
 }
 
+
 int nCr(int n, int r){
 
     int fact_n = factorial(n);
