@@ -28,16 +28,18 @@ int main(){
     vector<int> vec = {1,2,3,4,5,6,7};
 
     cout << "vec.begin : " << *(vec.begin()) << endl;
-    cout << "vec.end : " << *(vec.end()) << endl;
-
-    vector<int>::iterator it;
-    for(it = vec.begin(); it != vec.end(); it++){
-        cout << *(it) << endl;
+    if(!vec.empty()){
+        cout << "vec.back  : " << vec.back() << endl;
     }
 
-    vector<int>::reverse_iterator it;
-    for(auto it = vec.rbegin(); it != vec.rend(); it++){
-        cout << *(it) << endl;
+    vector<int>::iterator it;
+    for(it = vec.begin(); it != vec.end(); ++it){
+        cout << *it << endl;
+    }
+
+    // reverse iteration (safe)
+    for(auto rit = vec.rbegin(); rit != vec.rend(); ++rit){
+        cout << *rit << endl;
     }
 
     return 0;
