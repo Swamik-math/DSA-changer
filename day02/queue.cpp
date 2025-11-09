@@ -11,6 +11,8 @@ int main(){
     q.push(3);
     q.push(4);
     q.push(5);
+    
+    cout << "Queue size = " << q.size() <<endl;
 
     while(!q.empty()){
         cout << q.front() << " ";
