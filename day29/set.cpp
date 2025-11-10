@@ -1,9 +1,10 @@
 #include<iostream>
 #include<set>
+#include<unordered_set>
 using namespace std;
 
 int main(){
-    multiset<int> s;
+    unordered_set<int> s;
 
     s.insert(1);
     s.insert(11);
@@ -11,14 +12,14 @@ int main(){
     s.insert(4);
     s.insert(3);
     s.insert(3);
-    
+
     s.insert(4);
     s.insert(3);
     s.insert(3);
 
     cout << s.size() << endl;
-    cout << "lower_bound = " << *(s.lower_bound(4)) << endl;
-    cout << "upper_bound = " << *(s.upper_bound(4)) << endl;
+    // cout << "lower_bound = " << *(s.lower_bound(4)) << endl;
+    // cout << "upper_bound = " << *(s.upper_bound(4)) << endl;
 
     for(auto val : s){
         cout << val << " ";
@@ -41,5 +42,12 @@ O(log n) = time complexity
 
 1. multiset<int>
 2. unordered_set<int>
+
+
+ALGORITHMS 
+
+SORTING - sort(arr, arr+n)
+          sort(arr, arr+n, greater<int>())
+          sort(v.begin(), v.end())
 
 */
