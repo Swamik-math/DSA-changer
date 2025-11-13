@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<algorithm>
 using namespace std;
 
 // int main(){
@@ -30,3 +31,12 @@ using namespace std;
 
 // lexico-graphic : being in dictonary order.
 
+int main(){
+    string dsa = "learn DSA";
+
+    reverse(dsa.begin(), dsa.end());
+
+    cout << dsa << endl;
+    return 0;
+
+}
