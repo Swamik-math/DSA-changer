@@ -32,7 +32,7 @@ int main(){
     // }
     // cout << endl;
 
-    char str[] = "apnacollege";
+    char str[] = "apna college";
     int len = 0;
 
     for(int i=0; i< str[i] != '\0'; i++){
