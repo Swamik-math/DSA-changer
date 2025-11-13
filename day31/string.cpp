@@ -20,17 +20,25 @@ int main(){
     // cout << strlen(str) << endl;
     // cout << strlen(ni) << endl;
 
-    char str[12];
+    // char str[12];
     
-    cout << "Enter the string: ";
-    cin.getline(str, 12);
-    // cout << "output : " << str << endl;
+    // cout << "Enter the string: ";
+    // cin.getline(str, 12);
+    // // cout << "output : " << str << endl;
 
-    for(char ch : str){
-        cout << ch << " ";
+    // for(char ch : str){
+    //     cout << ch << " ";
 
+    // }
+    // cout << endl;
+
+    char str[] = "apnacollege";
+    int len = 0;
+
+    for(int i=0; i< str[i] != '\0'; i++){
+        len ++;
     }
-    cout << endl;
+    cout << "String length is = " << len << endl;
 
     return 0;
 }
