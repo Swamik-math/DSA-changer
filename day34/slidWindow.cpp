@@ -117,5 +117,158 @@ for right in range(n):
 
     # update answer
 
+----------------------------------------------------------------------------------------------------
 
+
+
+⭐ TWO POINTERS TECHNIQUE
+
+This one is used in:
+
+Arrays
+
+Strings
+
+Linked Lists
+
+Sliding window (two pointers is the base)
+
+Sorting-based problems
+
+Interview classics
+
+And it's VERY easy to learn.
+
+🚀 What is Two Pointers?
+
+Two pointers = using two indices to solve a problem more efficiently than nested loops.
+
+Types:
+
+Opposite Direction Pointers (start + end)
+
+Same Direction Pointers (fast + slow)
+
+Let’s understand both with examples.
+
+⭐ 1. Opposite Direction Pointers
+
+Used when:
+
+The array is sorted
+
+You want to find pairs, sums, conditions
+
+Example Problem:
+
+Find if there exist two numbers whose sum = target
+
+Naive approach:
+
+for i:
+    for j:
+        if a[i] + a[j] == target:
+            return True
+
+
+O(n²) — slow.
+
+Two Pointers:
+left = 0
+right = n-1
+
+while left < right:
+    sum = arr[left] + arr[right]
+
+    if sum == target:
+        return True
+
+    elif sum < target:
+        left++         # increase sum
+
+    else:
+        right--        # decrease sum
+
+Why it works?
+
+Because in a sorted array:
+
+Moving left pointer → increases value
+
+Moving right pointer → decreases value
+
+So we can adjust the sum intelligently without brute force.
+
+⭐ 2. Same Direction Pointers (Fast & Slow)
+
+Used to detect patterns or cycles.
+
+Example:
+
+Check if a Linked List has a loop
+
+Fast and slow pointer:
+
+slow moves 1 step
+
+fast moves 2 steps
+
+if they meet → loop exists
+
+This is called Floyd’s Cycle Detection Algorithm.
+
+Why it works?
+
+Fast pointer will eventually catch the slow one if a cycle exists — like two people running on a circular track.
+
+⭐ Why Two Pointers are AMAZING?
+Problem	Without Two Pointers	With Two Pointers
+Pair sum	O(n²)	O(n)
+Remove duplicates	O(n)	O(n) (in place)
+Move zeros	O(n)	O(n)
+Reverse string	O(n)	O(n)
+Palindrome check	O(n)	O(n)
+
+And uses NO extra space (O(1)).
+
+🔥 Most common places where Two Pointers is used:
+
+Check palindrome
+
+Reverse array/string
+
+Two-sum (sorted)
+
+Sort colors (Dutch flag)
+
+Merge sorted arrays
+
+Remove duplicates from sorted array
+
+Partition around a value
+
+Sliding window (two pointer version)
+
+Linked list cycle detection
+
+Middle of linked list
+
+⭐ Visual Understanding
+
+Example:
+
+arr = [1, 2, 3, 4, 9, 12]
+target = 11
+
+L → 1
+R →           12   sum = 13 > 11 → R--
+
+L → 1
+R →        9       sum = 10 < 11 → L++
+
+L → 2
+R →        9       sum = 11 ✔ found
+
+
+No nested loop needed!
 */
