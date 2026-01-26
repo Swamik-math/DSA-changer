@@ -1,0 +1,195 @@
+1️⃣ Arrays (🔥 VERY IMPORTANT)
+
+Must know:
+
+Prefix sum
+
+Sliding window
+
+Two pointers
+
+Kadane’s algorithm
+
+Rotate array
+
+Majority element
+
+Subarray problems
+
+Top problems:
+
+Maximum subarray sum
+
+Two Sum
+
+Move zeroes
+
+Best time to buy & sell stock
+
+Subarray with given sum
+
+2️⃣ Strings
+
+Must know:
+
+Character frequency
+
+Two pointers
+
+Hashing
+
+Palindrome
+
+Anagrams
+
+String compression
+
+Top problems:
+
+Valid palindrome
+
+Longest common prefix
+
+Longest substring without repeat
+
+Check anagram
+
+3️⃣ Linked List (🔥 YOU’RE HERE)
+
+Must master:
+
+Insert / Delete
+
+Reverse (iterative + recursive)
+
+Middle node
+
+Detect & remove loop
+
+Merge sorted lists
+
+Nth node from end
+
+4️⃣ Stack & Queue (🔥 EXTREMELY IMPORTANT)
+
+Stack:
+
+Next greater element
+
+Balanced parentheses
+
+Infix → postfix
+
+Min stack
+
+Queue / Deque:
+
+Sliding window maximum
+
+Circular queue
+
+Queue using stack
+
+5️⃣ Hashing (CORE FOR OPTIMIZATION)
+
+Must know:
+
+unordered_map
+
+Frequency counting
+
+Prefix sum + hash map
+
+Top problems:
+
+Two sum
+
+Longest subarray with sum K
+
+Majority element
+
+First non-repeating element
+
+6️⃣ Recursion & Backtracking
+
+Must know:
+
+Recursion basics
+
+Subsets
+
+Permutations
+
+N-Queens
+
+Rat in a maze
+
+7️⃣ Trees (🔥 TOP COMPANY FAVORITE)
+
+Binary Tree:
+
+Traversals (Inorder, Preorder, Postorder)
+
+Height / Diameter
+
+Lowest Common Ancestor
+
+Balanced tree check
+
+BST:
+
+Insert / Search
+
+Valid BST
+
+Kth smallest element
+
+8️⃣ Heaps (Priority Queue)
+
+Must know:
+
+Min heap / Max heap
+
+K largest / smallest elements
+
+Heap sort
+
+9️⃣ Graphs (IMPORTANT BUT LIMITED)
+
+Must know:
+
+BFS / DFS
+
+Cycle detection
+
+Connected components
+
+Topological sort
+
+Shortest path (BFS, Dijkstra)
+
+🔟 Dynamic Programming (🔥 DECIDING FACTOR)
+
+Must master patterns:
+
+1D DP
+
+2D DP
+
+Knapsack
+
+LIS
+
+LCS
+
+Top problems:
+
+Fibonacci
+
+House Robber
+
+Coin Change
+
+Climbing stairs
+
+Edit distance (basic idea)
