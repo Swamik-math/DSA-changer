@@ -1,6 +1,3 @@
-#include<iostream>
-#include<vector>
-using namespace std;
 
 /*
 VECTOR: 
@@ -28,3 +25,4 @@ v.clear();
 
 v.erase(v.begin()+2);
 */
+
