@@ -32,3 +32,13 @@ int largeArea(vector<int>& heights){
     }
     return maxArea;
 }
+
+int main(){
+
+    vector<int> heights =  {2,1,5,6,2,3};
+    int result = largeArea(heights);
+
+    cout << "Largest area rectangele: " << result << endl;
+
+    return 0;
+}
