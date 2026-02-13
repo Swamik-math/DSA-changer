@@ -27,4 +27,15 @@ Node* insertBST(Node* root, int key){
 }
 
 // search in BST
-bool serchBst
+bool serchBst(Node* root, int val){
+    if(root == NULL)
+        return false;
+
+    if(root->data == val)
+        return true;
+
+    if(val < root->data)
+        return serchBst(root->left, val);
+    else
+        return serchBst(root->left, val);
+}
