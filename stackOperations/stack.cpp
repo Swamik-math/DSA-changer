@@ -8,6 +8,33 @@ using namespace std;
 // top()
 // size()
 
+class Stack{
+    int arr[100];
+    int topIndex;
+
+public :
+     Stack(){
+        topIndex = -1;
+     }
+
+     void push(int x){
+        arr[++topIndex] = x;
+     }
+
+     void pop(){
+        topIndex--;
+     }
+
+     int top(){
+        return arr[topIndex];
+     }
+
+     bool empty(){
+        return topIndex == -1;
+     }
+};
+
+
 int main(){
     stack<int> st;
 
