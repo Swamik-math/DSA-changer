@@ -15,13 +15,46 @@ bool is_even(int n){
     else return false;
 }
 
-int main(){
-    string m = "216845132136546513214654321657";
-    int n = 5421252;
+//multiplication table
+void multiple(int n){
+    for(int i=1; i<=20; ++i){
+        cout << n << " * "<< i << " = " << n*i << endl;
+    }
 
-    if(is_even(n))
-        cout << "true";
-    else
-        cout << "false";
+}
+
+// recursion method for the table multiplication
+void mulTable(int n, int i=1){
+    if(i == 11)
+    return;
+
+    cout << n << " * "<< i << " = " << n*i << endl;
+    i++; mulTable(n, i);
+}
+
+int findSum(int n){
+    int sum = 0;
+    for(int i=0; i<n; i++){
+        sum += i;
+    }
+    return sum;
+}
+
+
+
+int main(){
+    // string m = "216845132136546513214654321657";
+    // int n = 5421252;
+
+    // if(is_even(n))
+    //     cout << "true";
+    // else
+    //     cout << "false";
+    // return 0;
+
+    // multiple(7);
+    // mulTable(4);
+    cout << findSum(5) << endl;
+
     return 0;
 }
