@@ -33,11 +33,26 @@ void mulTable(int n, int i=1){
 }
 
 int findSum(int n){
-    int sum = 0;
-    for(int i=0; i<n; i++){
-        sum += i;
-    }
-    return sum;
+    // int sum = 0;
+    // for(int i=1; i<=n; i++){
+    //     sum += i;
+    // }
+    // return sum;
+    return n*(n+1)/2;
+}
+
+int squareSum(int n){
+    // int sum = 0;
+    // for(int i=1; i<=n; i++){
+    //     sum = sum + (i*i);
+    // }
+    // return sum;
+    return (n*(n+1) * (2*n+1))/6;
+}
+
+void swapNum(int &a, int &b){
+    swap(a, b);
+    // No return needed for void function
 }
 
 
@@ -51,10 +66,15 @@ int main(){
     // else
     //     cout << "false";
     // return 0;
+    // int a = 10;
+    // int b = 15;
 
     // multiple(7);
     // mulTable(4);
-    cout << findSum(5) << endl;
+    // cout << findSum(3) << endl;
+    // cout << squareSum(2) << endl;
+    // swap(a, b);
+    // cout << "a: " << a << ", b: " << b << endl;
 
     return 0;
 }
