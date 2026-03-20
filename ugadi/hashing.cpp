@@ -52,5 +52,13 @@ bool isSubsetSort(vector<int> &a, vector<int> &b)
 
 int main(){
     vector<int> a = {11,1,13,21,3,7};
-    vector<int> b = {11, 3, 7, 1};
+    vector<int> b = {11, 3, 7, 2};
+
+    if(isSubsetSort(a, b))
+        cout << "true\n";
+    else
+        cout << "false\n";
+    
+    return 0;
+
 }
