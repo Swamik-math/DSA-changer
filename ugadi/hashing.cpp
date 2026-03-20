@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include<unordered_set>
 using namespace std;
 
 bool subSetPresent(vector<int> &a, vector<int> &b)
@@ -50,11 +51,23 @@ bool isSubsetSort(vector<int> &a, vector<int> &b)
     return (j == n);
 }
 
+bool isSubset(vector<int> &a, vector<int> &b){
+    unordered_set<int> set(a.begin(), a.end());
+
+    for(int x : b){
+        if(set.find(x) == set.end()){
+            return false;
+        }
+        set.erase(set.find(x));
+    }
+    return true;
+}
+
 int main(){
     vector<int> a = {11,1,13,21,3,7};
-    vector<int> b = {11, 3, 7, 2};
+    vector<int> b = {11, 3, 7, 1};
 
-    if(isSubsetSort(a, b))
+    if(isSubset(a, b))
         cout << "true\n";
     else
         cout << "false\n";
