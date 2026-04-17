@@ -10,32 +10,29 @@ int reverseNum(int n){
     return rev;
 }
 
-int minMirrorPairDistance(vector<int>& nums){
-    unordered_map<int, int> map;
+int minMirrorPairDistance(vector<int>& nums) {
+         unordered_map<int, int> map;
 
     int n = nums.size();
 
-    for(int i = 0; i<n; i++){
-        map[nums[i]] = i;
-    }
-
     int ans = INT_MAX;
     for(int i=0; i<n; i++){
-        int revNum = reverseNum(nums[i]);
+        // int revNum = reverseNum(nums[i]);
 
-        if(map.find(revNum) != map.end()){
-            ans = min(ans, abs(i - map[nums[i]]));
+        if(map.count(nums[i])){
+            ans = min(ans, i - map[nums[i]]);
         }
+        map[reverseNum(nums[i])] = i;
     }
     return (ans == INT_MAX) ? -1 : ans;
-}
+} 
 
 int main() {
     vector<int> num = {21, 120};
 
     int ans = minMirrorPairDistance(num);
-
-    cout << ans << endl;
-
+    cout << ans << "\n";
     return 0;
+
+   
 }
