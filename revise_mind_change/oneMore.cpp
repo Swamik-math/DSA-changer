@@ -19,13 +19,31 @@ int maxWater(vector<int> &arr){
 
 // sliding window method
 int waterContainer(vector<int> &arr){
-    int n = 
+    int n = arr.size();
+    if(n <= 1) return 0;
+    int l = 0;
+    int r = n-1;
+
+    int water = INT_MIN;
+
+    while(l < r){
+        int width = r - l;
+
+        int currWt = min(arr[l], arr[r]) * width;
+        water = max(water, currWt);
+
+        if(arr[l] < arr[r]) l++;
+        else r--;
+    }
+    return water;
+
 }
 
 int main() {
 
     vector<int> arr = {2, 1, 8, 6, 4, 6, 5, 5};
-    cout << maxWater(arr) << endl;
     
+    cout << maxWater(arr) << endl;
+    cout << waterContainer(arr) << endl;
     return 0;
 }
