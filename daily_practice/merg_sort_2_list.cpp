@@ -35,6 +35,9 @@ class Solution {
             tail = tail->next;
         }
         
+        // if any nodes are remaining in the list after comparing and putting in the list 
+        // then we have to add those remaining nodes in the list
+        
         if(h1) tail->next = h1;
         if(h2) tail->next = h2;
         
