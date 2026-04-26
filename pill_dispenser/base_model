@@ -1,0 +1,615 @@
+// // // Smart Medicine Dispenser (hardware-ready, printer-safe)
+// // // Fits 200x200x200 mm print volume
+// // // Supports: ESP32, DS3231, 16x2 I2C LCD, 2x SG90, RGB LED, buzzer, buttons
+// // // Units: mm
+
+// // $fn = 72;
+
+// // // ========== MAIN DIMENSIONS (RESCALED) ==========
+// // base_L = 190;   // <= 200
+// // base_W = 150;   // <= 200
+// // base_H = 95;    // <= 200
+// // wall   = 3;
+
+// // // Tray
+// // tray_L = 156;
+// // tray_W = 118;
+// // tray_H = 34;
+// // tray_wall  = 2.4;
+// // tray_floor = 2.4;
+
+// // // Wheel / dosing
+// // pill_d = 10;
+// // wheel_D = 88;
+// // wheel_T = 7;
+// // shaft_D = 5.2;
+
+// // // Hinged lid
+// // hinge_pin_D = 2.8;
+// // hinge_knuckle_D = 7.0;
+
+// // // ========== ELECTRONICS DEFAULTS ==========
+// // esp_L = 55; esp_W = 28;
+// // esp_hole_dx = 47; esp_hole_dy = 20; esp_hole_d = 2.7;
+// // standoff_h  = 6;
+
+// // rtc_L = 38; rtc_W = 22;
+// // rtc_hole_dx = 32; rtc_hole_dy = 16; rtc_hole_d = 2.4;
+
+// // lcd_pcb_L = 80; lcd_pcb_W = 36;
+// // lcd_hole_dx = 75; lcd_hole_dy = 31; lcd_hole_d = 3.2;
+// // lcd_view_L = 64; lcd_view_W = 14;
+
+// // servo_len = 23; servo_wid = 12.5; servo_hgt = 24; servo_tol = 0.6;
+
+// // button_d = 7;
+// // rgb_led_d = 5.2;
+// // buzzer_d = 12.2;
+// // power_hole_d = 9;
+
+// // // Export flags
+// // show_assembly = true;
+// // export_base = false;
+// // export_tray = false;
+// // export_wheel = false;
+// // export_lid = false;
+// // export_pin = false;
+
+// // // ================= Helpers =================
+// // module screw_post(h=8, od=7, id=2.8){
+// //     difference(){
+// //         cylinder(d=od,h=h);
+// //         translate([0,0,-0.1]) cylinder(d=id,h=h+0.2);
+// //     }
+// // }
+// // module rounded_slot(l=16,w=10,h=3){
+// //     hull(){
+// //         translate([-l/2 + w/2,0,0]) cylinder(d=w,h=h);
+// //         translate([ l/2 - w/2,0,0]) cylinder(d=w,h=h);
+// //     }
+// // }
+// // module funnel_down(h=8,d_top=18,d_bot=12){
+// //     difference(){
+// //         cylinder(d=d_top,h=h);
+// //         translate([0,0,-0.1]) cylinder(d1=d_top-2.2,d2=d_bot-2.2,h=h+0.2);
+// //     }
+// // }
+
+// // // ================= Base =================
+// // module part_base(){
+// //     difference(){
+// //         cube([base_L,base_W,base_H]);
+// //         translate([wall,wall,wall])
+// //             cube([base_L-2*wall, base_W-2*wall, base_H-wall]);
+
+// //         // Front LCD window
+// //         translate([base_L/2, -0.1, 58])
+// //             rotate([90,0,0]) cube([lcd_view_L, lcd_view_W, wall+1], center=true);
+
+// //         // 3 push buttons on front
+// //         for(x=[base_L/2 - 30, base_L/2, base_L/2 + 30]){
+// //             translate([x,-0.1,28]) rotate([90,0,0]) cylinder(d=button_d,h=wall+1);
+// //         }
+
+// //         // RGB LED hole front-right
+// //         translate([base_L/2 + 62,-0.1,28]) rotate([90,0,0]) cylinder(d=rgb_led_d,h=wall+1);
+
+// //         // Buzzer hole right wall
+// //         translate([base_L-0.1, base_W*0.72, 30]) rotate([0,90,0]) cylinder(d=buzzer_d,h=wall+1);
+
+// //         // Power cable hole rear
+// //         translate([base_L*0.75, base_W-0.1, 16]) rotate([90,0,0]) cylinder(d=power_hole_d,h=wall+1);
+
+// //         // Pill outlet on right wall
+// //         translate([base_L-0.1, base_W/2, 20])
+// //             rotate([0,90,0]) rounded_slot(l=22,w=14,h=wall+1);
+// //     }
+
+// //     // Tray support lip
+// //     translate([(base_L-tray_L)/2 -1, (base_W-tray_W)/2 -1, base_H-20])
+// //         difference(){
+// //             cube([tray_L+2, tray_W+2, 4]);
+// //             translate([1,1,-0.1]) cube([tray_L, tray_W, 4.2]);
+// //         }
+
+// //     // Servo platform A (main wheel)
+// //     translate([base_L/2 - 30, base_W/2 - 22, wall]) servo_platform();
+
+// //     // Servo platform B (aux)
+// //     translate([12, base_W/2 - 22, wall]) servo_platform();
+
+// //     // ESP32 mounts
+// //     translate([12, base_W-esp_W-18, wall]) board_standoffs(esp_hole_dx, esp_hole_dy, esp_hole_d, standoff_h);
+
+// //     // RTC mounts
+// //     translate([14, 18, wall]) board_standoffs(rtc_hole_dx, rtc_hole_dy, rtc_hole_d, standoff_h);
+
+// //     // LCD posts
+// //     translate([base_L/2 - lcd_hole_dx/2, 8, 52]) lcd_mount_posts();
+
+// //     // chute guide
+// //     translate([base_L-34, base_W/2-15, wall+5]) chute_guide();
+// // }
+
+// // module board_standoffs(dx,dy,hole_d,hh){
+// //     for(p=[[0,0],[dx,0],[0,dy],[dx,dy]]){
+// //         translate([p[0],p[1],0]) screw_post(h=hh, od=7, id=hole_d);
+// //     }
+// // }
+
+// // module lcd_mount_posts(){
+// //     for(p=[[0,0],[lcd_hole_dx,0],[0,lcd_hole_dy],[lcd_hole_dx,lcd_hole_dy]]){
+// //         translate([p[0],0,p[1]]) rotate([90,0,0]) screw_post(h=6, od=8, id=lcd_hole_d);
+// //     }
+// // }
+
+// // module servo_platform(){
+// //     pl=60; pw=44; ph=6;
+// //     difference(){
+// //         cube([pl,pw,ph]);
+// //         translate([(pl-servo_len-servo_tol)/2, (pw-servo_wid-servo_tol)/2, 0.8])
+// //             cube([servo_len+servo_tol, servo_wid+servo_tol, servo_hgt]);
+// //         translate([pl/2,pw/2,-0.1]) cylinder(d=8,h=ph+0.2);
+// //     }
+// //     translate([7,7,0]) screw_post(h=ph,od=6.5,id=2.2);
+// //     translate([pl-7,7,0]) screw_post(h=ph,od=6.5,id=2.2);
+// //     translate([7,pw-7,0]) screw_post(h=ph,od=6.5,id=2.2);
+// //     translate([pl-7,pw-7,0]) screw_post(h=ph,od=6.5,id=2.2);
+// // }
+
+// // module chute_guide(){
+// //     difference(){
+// //         hull(){
+// //             translate([0,8,18]) cube([22,14,2]);
+// //             translate([16,9,4]) cube([12,11,2]);
+// //         }
+// //         translate([5,7,2]) rotate([0,25,0]) cube([22,14,24]);
+// //     }
+// // }
+
+// // // ================= Tray =================
+// // module tray_hinge_mates(){
+// //     y = tray_W+0.1; z = tray_H-8;
+// //     for(x=[tray_L*0.28, tray_L*0.72]){
+// //         translate([x,y,z]) rotate([90,0,0])
+// //             difference(){
+// //                 cylinder(d=hinge_knuckle_D,h=9);
+// //                 translate([0,0,-0.1]) cylinder(d=hinge_pin_D,h=9.2);
+// //             }
+// //     }
+// // }
+
+// // module part_tray(){
+// //     hole_offset = tray_L*0.25; // aligns with wheel pockets
+
+// //     difference(){
+// //         cube([tray_L,tray_W,tray_H]);
+// //         translate([tray_wall,tray_wall,tray_floor])
+// //             cube([tray_L-2*tray_wall, tray_W-2*tray_wall, tray_H]);
+
+// //         // two compartment holes
+// //         translate([tray_L/2-hole_offset, tray_W/2, -0.1]) cylinder(d=pill_d+3, h=tray_floor+0.3);
+// //         translate([tray_L/2+hole_offset, tray_W/2, -0.1]) cylinder(d=pill_d+3, h=tray_floor+0.3);
+
+// //         // drop opening
+// //         translate([tray_L-12, tray_W/2, -0.1]) rounded_slot(l=18,w=11,h=tray_floor+0.3);
+// //     }
+
+// //     // center divider
+// //     translate([tray_L/2-tray_wall/2, tray_wall, tray_floor])
+// //         cube([tray_wall, tray_W-2*tray_wall, tray_H-tray_floor]);
+
+// //     // funnels
+// //     translate([tray_L/2-hole_offset, tray_W/2, 0]) funnel_down(h=8,d_top=pill_d+9,d_bot=pill_d+3);
+// //     translate([tray_L/2+hole_offset, tray_W/2, 0]) funnel_down(h=8,d_top=pill_d+9,d_bot=pill_d+3);
+
+// //     // wheel chamber ring
+// //     translate([tray_L/2, tray_W/2, -7.5])
+// //         difference(){
+// //             cylinder(d=wheel_D+8,h=7.5);
+// //             translate([0,0,-0.1]) cylinder(d=wheel_D+1.2,h=7.7);
+// //         }
+
+// //     tray_hinge_mates();
+// // }
+
+// // // ================= Wheel =================
+// // module part_wheel(){
+// //     pocket_w = pill_d + 1.2;
+// //     pocket_l = pill_d + 2.0;
+// //     pocket_h = wheel_T - 1.4;
+// //     pocket_offset = tray_L*0.25; // must match tray holes
+
+// //     difference(){
+// //         cylinder(d=wheel_D,h=wheel_T);
+// //         translate([0,0,-0.1]) cylinder(d=shaft_D,h=wheel_T+0.2);
+
+// //         translate([+pocket_offset,0,1.0]) rounded_slot(l=pocket_l,w=pocket_w,h=pocket_h);
+// //         translate([-pocket_offset,0,1.0]) rounded_slot(l=pocket_l,w=pocket_w,h=pocket_h);
+
+// //         for(a=[0,120,240]) rotate([0,0,a]) translate([7,0,-0.1]) cylinder(d=2.0,h=wheel_T+0.2);
+// //     }
+
+// //     translate([0,0,wheel_T])
+// //         difference(){
+// //             cylinder(d=13,h=7);
+// //             translate([0,0,-0.1]) cylinder(d=4.9,h=7.2);
+// //         }
+// // }
+
+// // // ================= Lid =================
+// // module part_lid(){
+// //     lid_t = 3;
+// //     lid_L = tray_L + 1.6;
+// //     lid_W = tray_W + 1.6;
+
+// //     union(){
+// //         translate([-0.8,-0.8,0]) cube([lid_L,lid_W,lid_t]);
+
+// //         for(x=[18,lid_L/2,lid_L-18]){
+// //             translate([x,lid_W,lid_t/2]) rotate([90,0,0])
+// //                 difference(){
+// //                     cylinder(d=hinge_knuckle_D,h=9);
+// //                     translate([0,0,-0.1]) cylinder(d=hinge_pin_D,h=9.2);
+// //                 }
+// //         }
+// //     }
+// // }
+
+// // module part_pin(){
+// //     cylinder(d=hinge_pin_D-0.2, h=tray_L+8);
+// // }
+
+// // // ================= Assembly =================
+// // module assembly(){
+// //     color("lightgray") part_base();
+
+// //     trayZ = base_H - 20 + 4;
+// //     translate([(base_L-tray_L)/2, (base_W-tray_W)/2, trayZ]){
+// //         color("gainsboro") part_tray();
+// //         color("silver") translate([tray_L/2, tray_W/2, -wheel_T-0.8]) part_wheel();
+// //         color("white") translate([0,0,tray_H+2]) part_lid();
+// //     }
+// // }
+
+// // // ================= Output =================
+// // if(show_assembly) assembly();
+// // if(export_base) part_base();
+// // if(export_tray) part_tray();
+// // if(export_wheel) part_wheel();
+// // if(export_lid) part_lid();
+// // if(export_pin) part_pin();
+
+
+// // ====================================================================================================================================
+
+// // Smart Medicine Dispenser V3 (Reliable Demo Version)
+// // Printer-safe: fits 200x200x200
+// // Architecture: 2 hoppers -> metering drum -> anti-double-drop wiper -> chute
+// // Hardware bay: ESP32, DS3231, 16x2 LCD, buttons, RGB LED, buzzer
+// // Units: mm
+
+// $fn = 80;
+
+// // =====================================================
+// // GLOBAL SIZE
+// // =====================================================
+// base_L = 190;
+// base_W = 150;
+// base_H = 95;
+// wall = 3;
+
+// // top hopper tray
+// tray_L = 156;
+// tray_W = 118;
+// tray_H = 38;
+// tray_wall = 2.4;
+// tray_floor = 2.6;
+
+// // drum
+// drum_D = 82;
+// drum_T = 10;
+// shaft_D = 5.2;          // SG90 coupler clearance
+// drum_gap_under_tray = 0.8;
+
+// // dose pocket (tuned for 1 tablet around 9-11 mm)
+// pill_d = 10;
+// pocket_L = pill_d + 2.0;
+// pocket_W = pill_d + 1.0;
+// pocket_H = drum_T - 2.0;
+
+// // outlet/chute
+// outlet_slot_L = 20;
+// outlet_slot_W = 12;
+
+// // hinge
+// hinge_knuckle_D = 7;
+// hinge_pin_D = 2.8;
+
+// // SG90
+// servo_len = 23;
+// servo_wid = 12.5;
+// servo_hgt = 24;
+// servo_tol = 0.6;
+
+// // Electronics defaults
+// lcd_view_L = 64;
+// lcd_view_W = 14;
+// button_d = 7;
+// rgb_led_d = 5.2;
+// buzzer_d = 12;
+// power_hole_d = 9;
+
+// // Export toggles
+// show_assembly = false; //true  false
+// export_base = false;
+// export_tray = false;
+// export_drum = false;
+// export_lid = false;
+// export_pin = false;
+// export_wiper = true;
+
+// // =====================================================
+// // HELPERS
+// // =====================================================
+// module screw_post(h=8, od=7, id=2.8){
+//     difference(){
+//         cylinder(d=od,h=h);
+//         translate([0,0,-0.1]) cylinder(d=id,h=h+0.2);
+//     }
+// }
+// module rounded_slot(l=16,w=10,h=3){
+//     hull(){
+//         translate([-l/2 + w/2,0,0]) cylinder(d=w,h=h);
+//         translate([ l/2 - w/2,0,0]) cylinder(d=w,h=h);
+//     }
+// }
+// module funnel_down(h=8,d_top=18,d_bot=11){
+//     difference(){
+//         cylinder(d=d_top,h=h);
+//         translate([0,0,-0.1]) cylinder(d1=d_top-2.2,d2=d_bot-2.2,h=h+0.2);
+//     }
+// }
+
+// // =====================================================
+// // BASE
+// // =====================================================
+// module part_base(){
+//     difference(){
+//         cube([base_L, base_W, base_H]);
+
+//         // hollow
+//         translate([wall,wall,wall])
+//             cube([base_L-2*wall, base_W-2*wall, base_H-wall]);
+
+//         // LCD front window
+//         translate([base_L/2, -0.1, 58])
+//             rotate([90,0,0]) cube([lcd_view_L, lcd_view_W, wall+1], center=true);
+
+//         // 3 buttons
+//         for(x=[base_L/2-30, base_L/2, base_L/2+30])
+//             translate([x,-0.1,28]) rotate([90,0,0]) cylinder(d=button_d,h=wall+1);
+
+//         // RGB LED
+//         translate([base_L/2+62,-0.1,28]) rotate([90,0,0]) cylinder(d=rgb_led_d,h=wall+1);
+
+//         // buzzer hole (right wall)
+//         translate([base_L-0.1, base_W*0.72, 30]) rotate([0,90,0]) cylinder(d=buzzer_d,h=wall+1);
+
+//         // power cable hole (rear)
+//         translate([base_L*0.75, base_W-0.1, 16]) rotate([90,0,0]) cylinder(d=power_hole_d,h=wall+1);
+
+//         // pill exit window (right wall)
+//         translate([base_L-0.1, base_W/2, 20]) rotate([0,90,0])
+//             rounded_slot(l=24,w=14,h=wall+1);
+//     }
+
+//     // tray support lip
+//     translate([(base_L-tray_L)/2 -1, (base_W-tray_W)/2 -1, base_H-20])
+//         difference(){
+//             cube([tray_L+2, tray_W+2, 4]);
+//             translate([1,1,-0.1]) cube([tray_L, tray_W, 4.2]);
+//         }
+
+//     // Main SG90 platform (drum drive)
+//     translate([base_L/2-30, base_W/2-22, wall]) servo_platform();
+
+//     // Optional second SG90 platform (future gate/agitator)
+//     translate([12, base_W/2-22, wall]) servo_platform();
+
+//     // generic board standoffs region (ESP32/RTC adaptable)
+//     translate([12, base_W-42, wall]) board_posts_grid(2,2,46,20,2.8);
+//     translate([14, 18, wall])        board_posts_grid(2,2,32,16,2.6);
+
+//     // lcd post anchors
+//     translate([base_L/2-37.5, 8, 52]) lcd_posts();
+
+//     // internal chute
+//     translate([base_L-34, base_W/2-15, wall+5]) chute_guide();
+// }
+
+// module servo_platform(){
+//     pl=60; pw=44; ph=6;
+//     difference(){
+//         cube([pl,pw,ph]);
+//         translate([(pl-servo_len-servo_tol)/2, (pw-servo_wid-servo_tol)/2, 0.8])
+//             cube([servo_len+servo_tol, servo_wid+servo_tol, servo_hgt]);
+//         translate([pl/2,pw/2,-0.1]) cylinder(d=8,h=ph+0.2);
+//     }
+//     for(p=[[7,7],[53,7],[7,37],[53,37]])
+//         translate([p[0],p[1],0]) screw_post(h=ph,od=6.5,id=2.2);
+// }
+
+// module board_posts_grid(nx,ny,dx,dy,hole_d){
+//     for(ix=[0:nx-1], iy=[0:ny-1])
+//         translate([ix*dx, iy*dy, 0]) screw_post(h=6,od=7,id=hole_d);
+// }
+
+// module lcd_posts(){
+//     for(p=[[0,0],[75,0],[0,31],[75,31]])
+//         translate([p[0],0,p[1]]) rotate([90,0,0]) screw_post(h=6,od=8,id=3.2);
+// }
+
+// module chute_guide(){
+//     difference(){
+//         hull(){
+//             translate([0,8,18]) cube([22,14,2]);
+//             translate([16,9,4]) cube([12,11,2]);
+//         }
+//         translate([5,7,2]) rotate([0,25,0]) cube([22,14,24]);
+//     }
+// }
+
+// // =====================================================
+// // TRAY / HOPPER (2 compartments)
+// // =====================================================
+// module tray_hinge_mates(){
+//     y = tray_W+0.1; z = tray_H-8;
+//     for(x=[tray_L*0.28, tray_L*0.72]){
+//         translate([x,y,z]) rotate([90,0,0])
+//             difference(){
+//                 cylinder(d=hinge_knuckle_D,h=9);
+//                 translate([0,0,-0.1]) cylinder(d=hinge_pin_D,h=9.2);
+//             }
+//     }
+// }
+
+// module part_tray(){
+//     hole_offset = tray_L*0.25; // left/right feed throats
+
+//     difference(){
+//         cube([tray_L,tray_W,tray_H]);
+
+//         // hollow upper bins
+//         translate([tray_wall,tray_wall,tray_floor])
+//             cube([tray_L-2*tray_wall, tray_W-2*tray_wall, tray_H]);
+
+//         // two feed throats -> drum
+//         translate([tray_L/2-hole_offset, tray_W/2, -0.1])
+//             cylinder(d=pill_d+3.2, h=tray_floor+0.4);
+//         translate([tray_L/2+hole_offset, tray_W/2, -0.1])
+//             cylinder(d=pill_d+3.2, h=tray_floor+0.4);
+
+//         // outlet slot near right side (to chute)
+//         translate([tray_L-11, tray_W/2, -0.1])
+//             rounded_slot(l=outlet_slot_L,w=outlet_slot_W,h=tray_floor+0.4);
+//     }
+
+//     // center divider (2 compartments)
+//     translate([tray_L/2-tray_wall/2, tray_wall, tray_floor])
+//         cube([tray_wall, tray_W-2*tray_wall, tray_H-tray_floor]);
+
+//     // funnels under each throat
+//     translate([tray_L/2-hole_offset, tray_W/2, 0]) funnel_down(h=8,d_top=pill_d+10,d_bot=pill_d+3.2);
+//     translate([tray_L/2+hole_offset, tray_W/2, 0]) funnel_down(h=8,d_top=pill_d+10,d_bot=pill_d+3.2);
+
+//     // drum chamber ring
+//     translate([tray_L/2, tray_W/2, -8.5])
+//         difference(){
+//             cylinder(d=drum_D+8, h=8.5);
+//             translate([0,0,-0.1]) cylinder(d=drum_D+1.4, h=8.7);
+//         }
+
+//     tray_hinge_mates();
+// }
+
+// // =====================================================
+// // DRUM (reliable single-dose design)
+// // =====================================================
+// module part_drum(){
+//     // feed positions from center
+//     feed_off = tray_L*0.25;
+
+//     difference(){
+//         cylinder(d=drum_D, h=drum_T);
+
+//         // center shaft
+//         translate([0,0,-0.1]) cylinder(d=shaft_D,h=drum_T+0.2);
+
+//         // Two dose pockets (one for each hopper side), symmetric
+//         // pocket shape = rounded slot
+//         translate([ feed_off,0,1.0]) rounded_slot(l=pocket_L,w=pocket_W,h=pocket_H);
+//         translate([-feed_off,0,1.0]) rounded_slot(l=pocket_L,w=pocket_W,h=pocket_H);
+
+//         // servo horn screws
+//         for(a=[0,120,240]) rotate([0,0,a]) translate([7,0,-0.1]) cylinder(d=2.0,h=drum_T+0.2);
+//     }
+
+//     // anti-bridge sweep ribs on top
+//     for(a=[20,200]){
+//         rotate([0,0,a]) translate([drum_D*0.33,0,drum_T-1]) cube([10,2,1],center=true);
+//     }
+
+//     // hub
+//     translate([0,0,drum_T])
+//         difference(){
+//             cylinder(d=13,h=7);
+//             translate([0,0,-0.1]) cylinder(d=4.9,h=7.2);
+//         }
+// }
+
+// // =====================================================
+// // WIPER GATE (anti-double-drop passive part)
+// // Place fixed under tray near outlet side
+// // =====================================================
+// module part_wiper(){
+//     // small fixed comb-like gate
+//     // print separately and glue/screw near outlet inside tray chamber
+//     difference(){
+//         cube([26,10,6]);
+//         translate([4,2,-0.1]) cube([18,2,6.2]);  // slit
+//     }
+//     // bevel nose
+//     translate([0,0,0]) rotate([0,20,0]) cube([4,10,5]);
+// }
+
+// // =====================================================
+// // LID + PIN
+// // =====================================================
+// module part_lid(){
+//     lid_t = 3;
+//     lid_L = tray_L + 1.6;
+//     lid_W = tray_W + 1.6;
+
+//     union(){
+//         translate([-0.8,-0.8,0]) cube([lid_L,lid_W,lid_t]);
+
+//         // hinge knuckles
+//         for(x=[18,lid_L/2,lid_L-18]){
+//             translate([x,lid_W,lid_t/2]) rotate([90,0,0])
+//                 difference(){
+//                     cylinder(d=hinge_knuckle_D,h=9);
+//                     translate([0,0,-0.1]) cylinder(d=hinge_pin_D,h=9.2);
+//                 }
+//         }
+//     }
+// }
+// module part_pin(){ cylinder(d=hinge_pin_D-0.2, h=tray_L+8); }
+
+// // =====================================================
+// // ASSEMBLY
+// // =====================================================
+// module assembly(){
+//     color("lightgray") part_base();
+
+//     trayZ = base_H - 20 + 4;
+//     translate([(base_L-tray_L)/2, (base_W-tray_W)/2, trayZ]){
+//         color("gainsboro") part_tray();
+//         color("silver") translate([tray_L/2, tray_W/2, -drum_T-drum_gap_under_tray]) part_drum();
+//         color("white") translate([0,0,tray_H+2]) part_lid();
+
+//         // wiper preview position
+//         color("orange") translate([tray_L-28, tray_W/2-5, -5.5]) part_wiper();
+//     }
+// }
+
+// // =====================================================
+// // OUTPUT
+// // =====================================================
+// if(show_assembly) assembly();
+// if(export_base) part_base();
+// if(export_tray) part_tray();
+// if(export_drum) part_drum();
+// if(export_lid) part_lid();
+// if(export_pin) part_pin();
+// if(export_wiper) part_wiper();
