@@ -54,6 +54,50 @@ void posttravel(Node* root){
     cout << root->data << " ";
 }
 
+//level order traversal
+
+void leveltravel(Node* root){
+    // we use the queue
+    queue<Node*> q;
+
+    q.push(root);
+    q.push(NULL);
+
+    while(q.size()>0){
+        Node* curr = q.front();
+        q.pop();
+     
+
+        if(curr == NULL){    // to print the elements in the level order  - to print in the next line 
+            if(!q.empty()){
+                cout << endl;
+                q.push(NULL);
+                continue;
+            }
+            else{
+                break;
+            }
+        }
+        cout << curr->data << " ";
+
+        if(curr->left != NULL){
+            q.push(curr->left);
+        }
+        if(curr->right != NULL){
+            q.push(curr->right);
+        }
+    }
+cout << endl;
+
+}
+
+/*
+
+tree mostly uses the recursion again and again
+
+
+*/
+
 int main() {
 
     vector<int> preorder = {1, 2, -1, -1, 3, 5, -1, -1, 4, -1, -1};
@@ -66,7 +110,10 @@ int main() {
     cout << endl;
     posttravel(root);
     cout << endl;
+    leveltravel(root);
 
     // cout << root->data << endl;
     return 0;
 }
+
+// the time complexity is -> O(n)
