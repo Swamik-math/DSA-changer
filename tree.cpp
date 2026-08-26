@@ -98,21 +98,55 @@ tree mostly uses the recursion again and again
 
 */
 
+//height of the tree
+int height(Node* root){
+
+    if(root == NULL) return 0;
+
+    int leftht = height(root->left);
+    int rightht = height(root->right);
+
+    return max(leftht, rightht) + 1;
+}
+
+int noNodes(Node* root){
+    if(root == NULL) return 0;
+
+    int leftcount = noNodes(root->left);
+    int rightcount = noNodes(root->right);
+
+    return leftcount + rightcount + 1;
+}
+
+int Nodsum(Node* root){
+
+    if(root == NULL) return 0;
+
+    int lefsum = Nodsum(root->left);
+    int rigsum = Nodsum(root->right);
+
+    return lefsum + rigsum + root->data;
+}
+
 int main() {
 
     vector<int> preorder = {1, 2, -1, -1, 3, 5, -1, -1, 4, -1, -1};
 
     Node* root = buildTree(preorder);
 
-    pretravel(root);
-    cout << endl;
-    intravel(root);
-    cout << endl;
-    posttravel(root);
-    cout << endl;
-    leveltravel(root);
+    // pretravel(root);
+    // cout << endl;
+    // intravel(root);
+    // cout << endl;
+    // posttravel(root);
+    // cout << endl;
+    // leveltravel(root);
 
     // cout << root->data << endl;
+
+    cout << height(root) << endl;
+    cout << noNodes(root) << endl;
+    cout << Nodsum(root) << endl;
     return 0;
 }
 
